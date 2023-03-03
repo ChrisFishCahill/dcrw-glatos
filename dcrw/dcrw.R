@@ -62,7 +62,7 @@ gamm <- rep((cos(seq(-pi, pi, length.out = behL)) + 1.1) / 2.2, length.out = nob
 plot(gamm, main = "Behaviorial state as per Auger-Methe et al. 2016")
 
 # simulate some fake data
-set.seed(100)
+set.seed(1)
 simdat <- sim(
   n = nobs, gamm = gamm, sdslo = sd_lon_p, sdsla = sd_lat_p,
   sdolo = .05, sdola = .05
@@ -88,7 +88,7 @@ beta2 <- 800
 D <- 1:2000
 det_fn <- 1 - (1 / (1 + 10^(-beta1 * (D - beta2))))
 Dkm <- D / 1000
-plot(det_fn ~ Dkm)
+plot(det_fn ~ Dkm, ylab = "detection probability", xlab = "distance (km)")
 
 # function to generate detection probability given nearest receiver:
 get_phat <- function(x) {
