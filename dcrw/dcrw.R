@@ -184,9 +184,9 @@ plot(simdat$x,
 ) 
 
 for (i in 1:nrow(receiver_locs)) {
-  plotrix::draw.circle(receiver_locs$Var1[i], receiver_locs$Var2[i],
-                       radius = 1.5,
-                       col = "white"
+  draw.circle(receiver_locs$Var1[i], receiver_locs$Var2[i],
+              radius = 1.5,
+              col = "white"
   )
 }
 points(receiver_locs, pch = 19, cex = 0.01, col = "black")
