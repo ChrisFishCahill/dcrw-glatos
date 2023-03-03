@@ -3,7 +3,8 @@
 # Questions:
 #
 # 1. Can we divine critter behavior as a latent state using  
-# a distance correlated random walk (i.e., a fancy state-space model)?
+# a distance correlated random walk?
+# i.e., a fancy state-space spatial-temporal model
 # 
 # 2. Can we fit it to something with GLATOS-like data?
 # 
