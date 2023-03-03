@@ -3,7 +3,7 @@
 # Questions:
 #
 # 1. Can we divine critter behavior as a latent state using  
-# a distance correlated random walk (i.e., fancy state-space model)?
+# a distance correlated random walk (i.e., a fancy state-space model)?
 # 
 # 2. Can we fit it to something with GLATOS-like data?
 # 
@@ -70,7 +70,7 @@ simdat <- sim(
 
 # Blow holes in the simulated track by sampling it:
 
-# how far apart are receivers:
+# how far apart are receivers (km)
 grid_size <- 10
 
 # calulate x and y range
@@ -110,7 +110,9 @@ simdat2 <- simdat$y[which(idx == 1),]
 dt <- diff(which(idx == 1)) # calculate all the dt values
 
 #-------------------------------------------------------------------------------
-# estimate all of that in TMB:
+# estimate all of that in TMB...
+
+# compile the TMB file
 compile("dcrw/dcrw.cpp")
 
 # create dynamically linked library:
@@ -124,7 +126,7 @@ data <- list(y = t(simdat2), dt = dt)
 parameters <- list(logSdlat = 0, logSdlon = 0, logSdgamma = 0, 
                    gamma = rep(0, dim(data$y)[2]))
 
-# create an automatic differentiation function
+# create an automatic differentiation function, treat gamma as latent random effect
 obj <- MakeADFun(data, parameters, random = "gamma", DLL = "dcrw")
 
 # run the model
